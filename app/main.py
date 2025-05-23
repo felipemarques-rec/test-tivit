@@ -6,6 +6,8 @@ from app.routers import auth, protected
 from app.models.database import engine, Base
 from app.core.config import settings
 from app.schemas.external_data import HealthCheckResponse, ErrorResponse
+# Test database connection
+from app.models.database import SessionLocal
 import logging
 
 # Configure logging
@@ -129,8 +131,6 @@ async def root():
 async def health_check():
     """Health check endpoint."""
     try:
-        # Test database connection
-        from app.models.database import SessionLocal
         db = SessionLocal()
         db.execute("SELECT 1")
         db.close()
